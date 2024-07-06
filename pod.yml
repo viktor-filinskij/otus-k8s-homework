@@ -32,6 +32,10 @@ spec:
     ports:
     - name: nginx-port
       containerPort: 8000
+    lifecycle:
+      preStop:
+        exec:
+          command: ["/bin/sh","-c","rm -rf /homework/index.html"]
     volumeMounts:
     - name: nginx-main-conf
       mountPath: /etc/nginx
