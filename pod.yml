@@ -25,6 +25,8 @@ kind: Pod
 metadata:
   name: hw1-staticweb1
   namespace: homework
+  labels:
+    app.kubernetes.io/name: hw1-staticweb1
 spec:
   containers:
   - name: nginx
@@ -81,3 +83,18 @@ spec:
     emptyDir:
       medium: ""
       sizeLimit: 1Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: staticweb
+spec:
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: hw1-staticweb1
+  ports:
+  - name: static-web-svc-port
+    protocol: TCP
+    port: 8000
+    targetPort: nginx-port
+    nodePort: 32000
