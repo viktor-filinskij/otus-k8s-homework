@@ -65,13 +65,14 @@ spec:
         - name: shared
           mountPath: /homework
         readinessProbe:
-          exec:
-            command:
-            - /bin/bash
-            - -c
-            - test -f /homework/index.html
-          initialDelaySeconds: 15
-          periodSeconds: 10
+          httpGet:
+            path: /index.html
+            port: staticweb-port
+            httpHeaders:
+            - name: X-Readiness-Probe
+              value: k8s-local
+          initialDelaySeconds: 10
+          periodSeconds: 3
         livenessProbe:
           httpGet:
             path: /index.html
