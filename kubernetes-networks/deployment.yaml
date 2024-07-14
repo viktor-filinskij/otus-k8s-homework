@@ -103,21 +103,3 @@ spec:
         emptyDir:
           medium: ""
           sizeLimit: 1Mi
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: staticweb
-  namespace: homework
-  labels:
-    app.kubernetes.io/name: staticweb
-spec:
-  type: NodePort
-  selector:
-    app.kubernetes.io/name: staticweb
-  ports:
-  - name: static-web-svc-port
-    protocol: TCP
-    port: 8000
-    targetPort: staticweb-port
-    nodePort: 32000
