@@ -3,8 +3,11 @@ kind: Ingress
 metadata:
   name: homework3
   namespace: homework
-# annotations:
-#   nginx.ingress.kubernetes.io/rewrite-target: /
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($uri ~* "^/homework$") {
+        rewrite /homework /index.html last;
+      }
 spec:
   ingressClassName: nginx
   defaultBackend:
