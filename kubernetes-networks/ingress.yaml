@@ -5,8 +5,8 @@ metadata:
   namespace: homework
   annotations:
     nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($uri ~* "^/homework$") {
-        rewrite /homework /index.html last;
+      if ($uri ~* "^/homepage$") {
+        rewrite /homepage /index.html last;
       }
 spec:
   ingressClassName: nginx
